@@ -58,4 +58,19 @@ public class ConsultaController {
         model.addAttribute("precioSup", precioSup);
         return "/consultas/listado";
     }
+    
+     ///////PRACTICA 2/////
+    ///SE BUSCA HACER UNA BUSQUEDA JPQL POR MEDIO DEL STOCK DE INVENTARIO//////
+    
+    @PostMapping("/consultaAmpliada")
+public String consultaAmpliada(@RequestParam() Integer existencias,
+        @RequestParam() String comparacion,
+        Model model) {
+    var productos = productoService.consultaAmpliada(existencias, comparacion);
+    model.addAttribute("productos", productos);
+    model.addAttribute("existencias", existencias);
+    model.addAttribute("comparacion", comparacion);
+    return "/consultas/listado";
+}
+    
 }

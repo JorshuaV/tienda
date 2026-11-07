@@ -81,4 +81,16 @@ public class ProductoService {
     public List<Producto> consultaSQL(BigDecimal precioInf, BigDecimal precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
+    
+    ///////PRACTICA 2/////
+    ///SE BUSCA HACER UNA BUSQUEDA JPQL POR MEDIO DEL STOCK DE INVENTARIO//////
+
+    @Transactional(readOnly = true)
+    
+    public List<Producto> consultaAmpliada(Integer existencias, String comparacion) {
+        if ("menos".equals(comparacion)) {
+        return productoRepository.consultaAmpliadaMenos(existencias);
+    }
+        return productoRepository.consultaAmpliadaMas(existencias);
+}
 }

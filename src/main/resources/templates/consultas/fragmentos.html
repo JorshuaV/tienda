@@ -67,7 +67,36 @@
             <div th:replace="~{consultas/fragmentos :: formConsulta('primary',#{consultas.derivadas},'/consultas/consultaDerivada')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.jpql},'/consultas/consultaJPQL')}"/>
             <div th:replace="~{consultas/fragmentos :: formConsulta('success',#{consultas.sql},'/consultas/consultaSQL')}"/>
-            <div class='card'><p>Acá va su Práctica #2</p></div>
+
+              <!-- Practica 2 -->
+            <div>
+                <form method="post" th:action="@{/consultas/consultaAmpliada}" class="was-validated">
+                    <div class="card p-2">
+                        <div class="card-header text-center text-white bg-secondary">
+                            <h5>[[#{consultas.ampliada}]]</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label>[[#{consultas.condicion}]]</label>
+                                <select name="comparacion" class="form-select" required>
+                                    <option value="mas" th:selected="${comparacion == 'mas'}">[[#{consultas.mas.de}]]</option>
+                                    <option value="menos" th:selected="${comparacion == 'menos'}">[[#{consultas.menos.de}]]</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>[[#{consultas.existencias}]]</label>
+                                <input type="number" name="existencias" th:value="${existencias}"
+                                       class="form-control" min="0" required/>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-secondary text-white">
+                                <i class="fa-solid fa-magnifying-glass"></i> [[#{consultas.ampliada}]]
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </section>
 
         <div th:fragment='formConsulta(colorForm, textoForm, urlForm)'>
